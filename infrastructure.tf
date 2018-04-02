@@ -24,6 +24,13 @@ resource "aws_security_group" "ssh_and_http" {
   }
 
   ingress {
+      from_port = 9000
+      to_port = 9000
+      protocol = "TCP"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
       from_port = 8080
       to_port = 8080
       protocol = "TCP"
@@ -46,7 +53,7 @@ resource "aws_security_group" "ssh_and_http" {
 }
 
 resource "aws_instance" "jenkins_master" {
-    ami = "ami-abc579d8"
+    ami = "ami-43a15f3e"
     instance_type = "t2.micro"
     key_name = "${aws_key_pair.provisioner.key_name}"
     security_groups = ["${aws_security_group.ssh_and_http.name}"]

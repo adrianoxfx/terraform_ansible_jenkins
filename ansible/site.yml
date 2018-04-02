@@ -3,6 +3,15 @@
   become: yes
   become_method: sudo
   remote_user: ubuntu
+  gather_facts: False
+  tasks:
+  - name: install python 2
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+- hosts: all
+  become: yes
+  become_method: sudo
+  remote_user: ubuntu
 
 - hosts: tag_role_jenkins_master
   become: yes
@@ -15,16 +24,11 @@
       - conditional-buildstep
       - jenkins-multijob-plugin
       - build-pipeline-plugin
-    brightbox_ruby_packages:
-      - ruby2.2
-      - ruby2.2-dev
+      - NodeJS
+
   roles:
     - essentials
-    - MichaelRigart.brightbox-ruby
-    - mjanser.cloudfoundry-cli
     - geerlingguy.java
     - geerlingguy.jenkins
-    - nginx_jenkins_proxy
-    - jenkins_cd_pipeline
 
 - hosts: tag_role_jenkins_slave
