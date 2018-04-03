@@ -30,5 +30,6 @@
     - essentials
     - geerlingguy.java
     - geerlingguy.jenkins
+    - geerlingguy.docker
 
 - hosts: tag_role_jenkins_slave

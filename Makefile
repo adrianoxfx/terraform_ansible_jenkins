@@ -16,7 +16,10 @@ ansible/roles/geerlingguy.java:
 ansible/roles/geerlingguy.jenkins:
 	ansible-galaxy install geerlingguy.jenkins -p ansible/roles
 
-ansible_roles: ansible/roles/geerlingguy.java ansible/roles/geerlingguy.jenkins
+ansible/roles/geerlingguy.docker:
+	ansible-galaxy install geerlingguy.docker -p ansible/roles
+
+ansible_roles: ansible/roles/geerlingguy.java ansible/roles/geerlingguy.jenkins ansible/roles/geerlingguy.docker
 
 ansible: ansible/ec2.ini ansible/ec2.py ansible_roles
 

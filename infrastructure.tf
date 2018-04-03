@@ -24,6 +24,13 @@ resource "aws_security_group" "ssh_and_http" {
   }
 
   ingress {
+      from_port = 3000
+      to_port = 3000
+      protocol = "TCP"
+      cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
       from_port = 9000
       to_port = 9000
       protocol = "TCP"
